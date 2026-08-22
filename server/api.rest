@@ -1,0 +1,53 @@
+### Create User API
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+  "name": "Aly Salem",
+  "email": "aly2@example.com",
+  "password": "aA@123456",
+  "number": "1234567890"
+}
+
+### Login API
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "johndoe2@example.com",
+  "password": "aA@123456"
+}
+
+### Create Task API
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Gy1m",
+  "description": "Task Description",
+  "status": "TODO",
+  "priority":"HIGH",
+    "dueDate": "2024-06-30T00:00:00.000Z",
+    "createdBy": "6a879c3acddcd40b5ed833f4"
+}
+
+### Get Tasks API
+GET http://localhost:5000/api/tasks/6a879c3acddcd40b5ed833f4
+Content-Type: application/json
+
+
+###Get Paginations  Tasks API
+GET http://localhost:5000/api/tasks/getPagination/6a879c3acddcd40b5ed833f4
+Content-Type: application/json
+
+{
+
+}
+
+### change Task status API 
+PATCH  http://localhost:5000/api/tasks/6a87aaa3e2fd3c58a684be9b
+Content-Type: application/json
+
+{
+  "status": "DONE"
+}
