@@ -1,3 +1,75 @@
+### ============================================
+### AUTHENTICATION
+### ============================================
+
+### Register User API
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Aly Salem",
+  "email": "aly3@example.com",
+  "password": "aA@123456",
+  "number": "1234567890"
+}
+
+
+### Login API
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "aly3@example.com",
+  "password": "aA@123456"
+}
+
+
+### Get Profile API
+GET http://localhost:5000/api/auth/profile
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+
+### Update Profile API
+PUT http://localhost:5000/api/auth/profile
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+{
+  "name": "Aly Salem Updated",
+  "email": "aly.updated@example.com",
+  "number": "1234567890"
+}
+
+
+### Change Password API
+PUT http://localhost:5000/api/auth/change-password
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+{
+  "currentPassword": "aA@123456",
+  "newPassword": "aA@1234567"
+}
+
+
+### Logout API
+POST http://localhost:5000/api/auth/logout
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+
+### Delete Account API
+DELETE http://localhost:5000/api/auth/delete
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+
+
+### ============================================
+### USERS
+### ============================================
+
 ### Create User API
 POST http://localhost:5000/api/users
 Content-Type: application/json
@@ -9,45 +81,66 @@ Content-Type: application/json
   "number": "1234567890"
 }
 
-### Login API
-POST http://localhost:5000/api/auth/login
-Content-Type: application/json
 
-{
-  "email": "johndoe2@example.com",
-  "password": "aA@123456"
-}
+
+### ============================================
+### TASKS
+### ============================================
 
 ### Create Task API
 POST http://localhost:5000/api/tasks
 Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
 
 {
-  "title": "Gy1m",
+  "title": "Gym",
   "description": "Task Description",
   "status": "TODO",
-  "priority":"HIGH",
-    "dueDate": "2024-06-30T00:00:00.000Z",
-    "createdBy": "6a879c3acddcd40b5ed833f4"
+  "priority": "HIGH",
+  "dueDate": "2024-06-30T00:00:00.000Z"
 }
 
-### Get Tasks API
-GET http://localhost:5000/api/tasks/6a879c3acddcd40b5ed833f4
+
+### Get Current User Tasks API
+GET http://localhost:5000/api/tasks
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+
+### Get Tasks Grouped By Status API
+GET http://localhost:5000/api/tasks/tasks/6a879c3acddcd40b5ed833f4/grouped
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+
+### Get Tasks With Pagination API
+GET http://localhost:5000/api/tasks/getPagination/6a879c3acddcd40b5ed833f4?page=1&limit=10
 Content-Type: application/json
 
 
-###Get Paginations  Tasks API
-GET http://localhost:5000/api/tasks/getPagination/6a879c3acddcd40b5ed833f4
+### Get Tasks With Pagination - Page 2
+GET http://localhost:5000/api/tasks/getPagination/6a879c3acddcd40b5ed833f4?page=2&limit=10
 Content-Type: application/json
 
-{
 
-}
-
-### change Task status API 
-PATCH  http://localhost:5000/api/tasks/6a87aaa3e2fd3c58a684be9b
+### Change Task Status API
+PATCH http://localhost:5000/api/tasks/6a87aaa3e2fd3c58a684be9b
 Content-Type: application/json
 
 {
   "status": "DONE"
+}
+
+
+### Update Task API
+PATCH http://localhost:5000/api/tasks/edit/6a87aaa3e2fd3c58a684be9b
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN
+
+{
+  "title": "Updated Gym Task",
+  "description": "Updated Task Description",
+  "status": "IN_PROGRESS",
+  "priority": "MEDIUM",
+  "dueDate": "2024-07-01T00:00:00.000Z"
 }
